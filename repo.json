@@ -3,23 +3,23 @@
         "Author":  "Soratix",
         "Name":  "Action Language Swap",
         "InternalName":  "ActionLangSwap",
-        "AssemblyVersion":  "0.1.0.0",
-        "TestingAssemblyVersion":  "0.1.0.0",
-        "Description":  "Remplace les noms des actions (et optionnellement des statuts) par ceux d\u0027une autre langue : barres d\u0027incantation, infobulles, menu des actions, textes volants et journal de combat. Commande : /actionlang",
-        "Punchline":  "Les noms des actions dans la langue de ton choix.",
+        "AssemblyVersion":  "0.2.0.0",
+        "TestingAssemblyVersion":  "0.2.0.0",
+        "Description":  "Replaces action names (and optionally status names) with those of another language: cast bars, tooltips, actions menu, flying text and battle log. Example: French client, English action names. Command: /actionlang",
+        "Punchline":  "Show action names in the language of your choice.",
         "ApplicableVersion":  "any",
         "Tags":  [
                      "language",
                      "translation",
                      "actions",
-                     "langue"
+                     "localization"
                  ],
         "DalamudApiLevel":  15,
         "RepoUrl":  "https://github.com/Soratix/ActionLangSwap",
         "DownloadLinkInstall":  "https://github.com/Soratix/ActionLangSwap/releases/latest/download/latest.zip",
         "DownloadLinkUpdate":  "https://github.com/Soratix/ActionLangSwap/releases/latest/download/latest.zip",
         "DownloadLinkTesting":  "https://github.com/Soratix/ActionLangSwap/releases/latest/download/latest.zip",
-        "LastUpdate":  1795468734,
+        "LastUpdate":  1795469296,
         "AcceptsFeedback":  false
     }
 ]

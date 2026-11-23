@@ -10,7 +10,6 @@ public sealed class ConfigWindow : Window
     private static readonly ClientLanguage[] Languages =
         [ClientLanguage.English, ClientLanguage.French, ClientLanguage.German, ClientLanguage.Japanese];
 
-    private static readonly string[] LanguageLabels = ["Anglais", "Français", "Allemand", "Japonais"];
 
     private readonly Plugin plugin;
 
@@ -28,7 +27,7 @@ public sealed class ConfigWindow : Window
         var changed = false;
 
         var enabled = cfg.Enabled;
-        if (ImGui.Checkbox("Activé", ref enabled))
+        if (ImGui.Checkbox($"{Loc.Get("Enabled")}###enabled", ref enabled))
         {
             cfg.Enabled = enabled;
             changed = true;
@@ -37,48 +36,49 @@ public sealed class ConfigWindow : Window
         var index = Array.IndexOf(Languages, cfg.TargetLanguage);
         if (index < 0) index = 0;
         ImGui.SetNextItemWidth(180);
-        if (ImGui.Combo("Langue des actions", ref index, LanguageLabels, LanguageLabels.Length))
+        var labels = Languages.Select(Loc.LanguageName).ToArray();
+        if (ImGui.Combo($"{Loc.Get("ActionLanguage")}###language", ref index, labels, labels.Length))
         {
             cfg.TargetLanguage = Languages[index];
             needsRebuild = true;
         }
 
         var statuses = cfg.IncludeStatuses;
-        if (ImGui.Checkbox("Traduire aussi les statuts (buffs / debuffs)", ref statuses))
+        if (ImGui.Checkbox($"{Loc.Get("IncludeStatuses")}###statuses", ref statuses))
         {
             cfg.IncludeStatuses = statuses;
             needsRebuild = true;
         }
 
         ImGui.Separator();
-        ImGui.TextUnformatted("Où remplacer :");
+        ImGui.TextUnformatted(Loc.Get("ReplaceIn"));
 
         var addons = cfg.ReplaceInAddons;
-        if (ImGui.Checkbox("Interface (incantations, infobulles, menu des actions)", ref addons))
+        if (ImGui.Checkbox($"{Loc.Get("ReplaceInAddons")}###addons", ref addons))
         {
             cfg.ReplaceInAddons = addons;
             changed = true;
         }
 
         var fly = cfg.ReplaceInFlyText;
-        if (ImGui.Checkbox("Textes volants (dégâts / soins)", ref fly))
+        if (ImGui.Checkbox($"{Loc.Get("ReplaceInFlyText")}###flytext", ref fly))
         {
             cfg.ReplaceInFlyText = fly;
             changed = true;
         }
 
         var chat = cfg.ReplaceInChat;
-        if (ImGui.Checkbox("Journal de combat", ref chat))
+        if (ImGui.Checkbox($"{Loc.Get("ReplaceInChat")}###chat", ref chat))
         {
             cfg.ReplaceInChat = chat;
             changed = true;
         }
 
         ImGui.Separator();
-        ImGui.TextDisabled($"Langue du client : {Plugin.ClientState.ClientLanguage}");
-        ImGui.TextDisabled($"{this.plugin.Translator.Count} noms chargés");
+        ImGui.TextDisabled(Loc.Get("ClientLanguage", Loc.LanguageName(Plugin.ClientState.ClientLanguage)));
+        ImGui.TextDisabled(Loc.Get("NamesLoaded", this.plugin.Translator.Count));
         if (cfg.TargetLanguage == Plugin.ClientState.ClientLanguage)
-            ImGui.TextColored(new Vector4(1f, 0.7f, 0.3f, 1f), "La langue choisie est déjà celle du client.");
+            ImGui.TextColored(new Vector4(1f, 0.7f, 0.3f, 1f), Loc.Get("SameLanguage"));
 
         if (needsRebuild)
         {

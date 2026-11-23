@@ -1,7 +1,7 @@
 <Project Sdk="Dalamud.NET.Sdk/15.0.0">
   <PropertyGroup>
-    <Version>0.1.0.0</Version>
-    <Description>Affiche les noms des actions dans une autre langue que celle du client.</Description>
+    <Version>0.2.0.0</Version>
+    <Description>Shows action names in another language than the game client.</Description>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>

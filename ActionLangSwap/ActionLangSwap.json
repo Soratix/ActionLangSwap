@@ -1,8 +1,8 @@
 ﻿{
   "Author": "Soratix",
   "Name": "Action Language Swap",
-  "Punchline": "Les noms des actions dans la langue de ton choix.",
-  "Description": "Remplace les noms des actions (et optionnellement des statuts) par ceux d'une autre langue : barres d'incantation, infobulles, menu des actions, textes volants et journal de combat. Commande : /actionlang",
+  "Punchline": "Show action names in the language of your choice.",
+  "Description": "Replaces action names (and optionally status names) with those of another language: cast bars, tooltips, actions menu, flying text and battle log. Example: French client, English action names. Command: /actionlang",
   "ApplicableVersion": "any",
-  "Tags": [ "language", "translation", "actions", "langue" ]
+  "Tags": [ "language", "translation", "actions", "localization" ]
 }

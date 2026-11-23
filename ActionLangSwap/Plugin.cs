@@ -42,10 +42,9 @@ public sealed class Plugin : IDalamudPlugin
         ChatGui.CheckMessageHandled += this.OnChatMessage;
         FlyTextGui.FlyTextCreated += this.OnFlyText;
 
-        CommandManager.AddHandler(Command, new CommandInfo((_, _) => this.configWindow.Toggle())
-        {
-            HelpMessage = "Ouvre la configuration (langue des noms d'actions).",
-        });
+        Loc.SetLanguage(PluginInterface.UiLanguage);
+        PluginInterface.LanguageChanged += this.OnLanguageChanged;
+        this.RegisterCommand();
 
         PluginInterface.UiBuilder.Draw += this.windowSystem.Draw;
         PluginInterface.UiBuilder.OpenConfigUi += this.configWindow.Toggle;
@@ -57,6 +56,7 @@ public sealed class Plugin : IDalamudPlugin
         PluginInterface.UiBuilder.Draw -= this.windowSystem.Draw;
         PluginInterface.UiBuilder.OpenConfigUi -= this.configWindow.Toggle;
         PluginInterface.UiBuilder.OpenMainUi -= this.configWindow.Toggle;
+        PluginInterface.LanguageChanged -= this.OnLanguageChanged;
         CommandManager.RemoveHandler(Command);
         FlyTextGui.FlyTextCreated -= this.OnFlyText;
         ChatGui.CheckMessageHandled -= this.OnChatMessage;
@@ -65,6 +65,20 @@ public sealed class Plugin : IDalamudPlugin
     }
 
     public void SaveConfiguration() => PluginInterface.SavePluginConfig(this.Configuration);
+
+    private void RegisterCommand()
+        => CommandManager.AddHandler(Command, new CommandInfo((_, _) => this.configWindow.Toggle())
+        {
+            HelpMessage = Loc.Get("CommandHelp"),
+        });
+
+    // La langue de l'interface Dalamud a changé : on met à jour les textes (y compris l'aide de la commande).
+    private void OnLanguageChanged(string langCode)
+    {
+        Loc.SetLanguage(langCode);
+        CommandManager.RemoveHandler(Command);
+        this.RegisterCommand();
+    }
 
     public void RebuildTranslator()
     {
