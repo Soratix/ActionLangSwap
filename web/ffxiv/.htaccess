@@ -1,0 +1,5 @@
+# À déposer dans le dossier www/ffxiv/ de l'hébergement OVH de soratix.fr.
+# https://soratix.fr/ffxiv/repo.json -> repo.json du dépôt GitHub (toujours à jour grâce à publish.ps1).
+# Ce RewriteEngine remplace les règles du .htaccess racine (celles du site) pour ce dossier uniquement.
+RewriteEngine On
+RewriteRule ^repo\.json$ https://raw.githubusercontent.com/Soratix/ActionLangSwap/main/repo.json [R=302,L]

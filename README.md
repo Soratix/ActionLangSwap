@@ -12,8 +12,10 @@ textes volants, journal de combat. Configuration : `/actionlang`.
 2. Dans **Custom Plugin Repositories**, colle l'adresse suivante, clique sur **+**, coche **Enabled** puis enregistre :
 
    ```
-   https://raw.githubusercontent.com/Soratix/ActionLangSwap/main/repo.json
+   https://soratix.fr/ffxiv/repo.json
    ```
+
+   (Adresse directe : `https://raw.githubusercontent.com/Soratix/ActionLangSwap/main/repo.json`)
 
 3. Tape `/xlplugins`, cherche **Action Language Swap** et installe-le.
 
